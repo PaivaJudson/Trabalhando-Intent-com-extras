@@ -1,5 +1,6 @@
 package com.judson.exercciodeintentcomextras;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,14 +25,16 @@ public class ActivitySecundaria extends AppCompatActivity {
 
         i = getIntent();
 
-        edt_nome2.setText("Olá "+ i.getExtras().getString("enviar_nome"));
+        edt_nome2.setText(i.getExtras().getString("enviar_nome"));
 
         btn_retornar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ActivitySecundaria.this, MainActivity.class);
-                startActivity(intent);
+                i.putExtra("enviar_nome", edt_nome2.getText().toString());
+                setResult(1, i);
+                finish();
             }
         });
     }
+
 }
